@@ -1,8 +1,10 @@
+// API calling
 const loadProducts = () => {
   fetch("https://fakestoreapi.com/products")
     .then((res) => res.json())
     .then((data) => showProducts(data));
 };
+loadProducts();
 
 // show all product in UI
 const showProducts = (products) => {
@@ -11,38 +13,46 @@ const showProducts = (products) => {
     const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
-    div.innerHTML = `<div class="single-product">
+    div.innerHTML = `
+    <div class="single-product">
       <div>
-    <img class="product-image" src=${image}></img>
+        <img class="product-image" src=${image}></img>
       </div>
       <h3>${product.title.slice(0, 30)}</h3>
       <h5>Category: ${product.category}</h5>
-      <p class="fw-bold"><span class="text-success">Rating:</span> ${
+      <p class="fw-bold">
+      <span class="text-success">Rating:</span> ${
         product.rating.rate
-      }<i class="fas fa-star text-danger"></i>  | <span class="text-success">Total Reviews:</span> ${
+      }<i class="fas fa-star text-danger"></i> | <span class="text-success">Total Reviews:</span> ${
       product.rating.count
-    }</p>
-
+    }
+      </p>
       <h2>Price: $ ${product.price}</h2>
       <button onclick="addToCart(${product.id},${
       product.price
-    })" id="addToCart-btn" class="buy-now btn btn-dark">add to cart</button>
+    })" id="addToCart-btn" class="buy-now btn btn-dark">
+        add to cart
+      </button>
       <button id="details-btn" class="btn btn-warning">Details</button>
-      </div>
-      `;
+    </div>
+    `;
     document.getElementById("all-products").appendChild(div);
   }
 };
+
+// product count on click
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
   updatePrice("price", price);
 
+  // update cart details
   updateTaxAndCharge();
   updateTotal();
   document.getElementById("total-Products").innerText = count;
 };
 
+// getting card id and detials
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseFloat(element);
@@ -88,5 +98,3 @@ const updateTotal = () => {
   document.getElementById("total").innerText = grandTotal.toFixed(2);
   console.log(grandTotal);
 };
-
-loadProducts();

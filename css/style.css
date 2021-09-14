@@ -4,21 +4,24 @@ body {
   background-color: rgba(202, 224, 224, 0.397);
 }
 
+/* special font style for name part  */
 .header-font-style {
   font-family: "Shadows Into Light", cursive;
 }
 
+/* all cards styles  */
 #all-products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
-  /* border: 1px solid black; */
   text-align: center;
   width: 95%;
   margin: auto;
   align-items: center;
   justify-content: center;
 }
+
+/* single card styles  */
 .single-product {
   padding: 10px;
   transition: 0.6s;
@@ -38,9 +41,10 @@ body {
   width: 150px;
   height: 150px;
 }
+
+/* cart style  */
 .cart {
   width: 350px;
-  /* border: 1px solid green; */
   padding: 10px;
   box-shadow: 10px 10px 20px gray;
   border-radius: 5px;
@@ -51,6 +55,8 @@ body {
 .cart-main {
   padding-right: 30px;
 }
+
+/* media queries */
 @media only screen and (max-width: 768px) {
   #all-products {
     display: grid;
@@ -58,7 +64,6 @@ body {
   }
   .cart {
     width: 300px;
-    /* border: 1px solid green; */
     padding: 10px;
     box-shadow: 10px 10px 20px gray;
     border-radius: 5px;
